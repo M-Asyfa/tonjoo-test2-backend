@@ -79,4 +79,17 @@ class TransactionController extends Controller
 
         return response()->json(['message' => 'Deleted successfully']);
     }
+
+    public function deleteDetail(TransactionHeader $header, $detailId)
+    {
+        $detail = $header->details()->findOrFail($detailId);
+
+        if ($header->details()->count() === 1) {
+            $header->delete();
+        } else {
+            $detail->delete();
+        }
+
+        return response()->json(['message' => 'Deleted successfully']);
+    }
 }

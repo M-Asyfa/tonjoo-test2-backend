@@ -12,6 +12,14 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->statefulApi();
+        $middleware->validateCsrfTokens(except: [
+            // 'sanctum/csrf-cookie',
+            'login',
+            'transactions',
+            'transactions/*',
+            'logout',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
