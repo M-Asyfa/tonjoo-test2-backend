@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['web'])->group(function () {
     Route::get('/transactions', [TransactionController::class, 'index']);
